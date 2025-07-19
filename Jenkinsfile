@@ -45,15 +45,18 @@ pipeline {
 
     ## ⬇️ Yeh Docker Push stage ab yaha daal:
     stage('Docker Push') {
-      steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-          sh '''
-            echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
-            docker tag finance-me:latest $USERNAME/finance-me:latest
-            docker push $USERNAME/finance-me:latest
-          '''
-        }
-      }
-    }
-  }
-}
+     steps {
+      withCredentials([usernamePassword(
+       credentialsId: '0c7554a4-5a04-4a65-9faf-e61cd8db40ba',
+       usernameVariable: 'USERNAME',
+       passwordVariable: 'PASSWORD'
+    )]) {
+      sh '''
+        echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
+        docker tag finance-me:latest $USERNAME/finance-me:latest
+        docker push $USERNAME/finance-me:latest
+      '''
+     }
+   }
+ }
+
