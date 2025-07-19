@@ -1,52 +1,59 @@
 pipeline {
-    agent any
+  agent any
 
-    tools {
-        maven 'Maven3'   // ✅ EXACT name jo Jenkins me configure kiya tha
-        jdk 'JDK17'      // ✅ EXACT name for Java 17
+  tools {
+    maven 'Maven3'
+    jdk 'JDK17'
+  }
+
+  stages {
+    stage('Checkout') {
+      steps {
+        git url: 'https://github.com/swarup182000/Finace-Project--1'
+      }
     }
 
-    stages {
-        stage('Checkout the code from GitHub') {
-            steps {
-                git url: 'https://github.com/swarup182000/Finace-Project--1'
-                echo 'FinanceMe project checked out'
-            }
-        }
-
-        stage('Compile') {
-            steps {
-                echo 'Compiling code...'
-                sh 'mvn compile'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                echo 'Running tests...'
-                sh 'mvn test'
-            }
-        }
-
-        stage('CheckStyle') {
-            steps {
-                echo 'Running QA checks...'
-                sh 'mvn checkstyle:checkstyle'
-            }
-        }
-
-        stage('Package') {
-            steps {
-                echo 'Packaging...'
-                sh 'mvn package'
-            }
-        }
-
-        stage('Docker Build') {
-            steps {
-                echo 'Building Docker image...'
-                sh 'docker build -t finance-me:latest .'
-            }
-        }
+    stage('Compile') {
+      steps {
+        sh 'mvn compile'
+      }
     }
+
+    stage('Test') {
+      steps {
+        sh 'mvn test'
+      }
+    }
+
+    stage('CheckStyle') {
+      steps {
+        sh 'mvn checkstyle:checkstyle'
+      }
+    }
+
+    stage('Package') {
+      steps {
+        sh 'mvn package'
+      }
+    }
+
+    stage('Docker Build') {
+      steps {
+        sh 'docker build -t finance-me:latest .'
+      }
+    }
+
+    ## ⬇️ Yeh Docker Push stage ab yaha daal:
+    stage('Docker Push') {
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+          sh '''
+            echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
+            docker tag finance-me:latest $USERNAME/finance-me:latest
+            docker push $USERNAME/finance-me:latest
+          '''
+        }
+      }
+    }
+  }
 }
