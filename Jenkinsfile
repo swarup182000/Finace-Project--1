@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     tools {
-        maven 'maven'    // Use actual configured names in Jenkins
-        jdk 'jdk'
+        maven 'Maven3'   // ✅ EXACT name jo Jenkins me configure kiya tha
+        jdk 'JDK17'      // ✅ EXACT name for Java 17
     }
 
     stages {
@@ -48,13 +48,5 @@ pipeline {
                 sh 'docker build -t finance-me:latest .'
             }
         }
-
-        stage('Run Docker') {
-            steps {
-                echo 'Running Docker container...'
-                sh 'docker run -dt -p 8091:8091 --name finance-container finance-me:latest'
-            }
-        }
     }
 }
-
