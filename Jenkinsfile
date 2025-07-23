@@ -43,7 +43,7 @@ pipeline {
       }
     }
 
-    ## ⬇️ Yeh Docker Push stage ab yaha daal:
+    
     stage('Docker Push') {
      steps {
       withCredentials([usernamePassword(
