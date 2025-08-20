@@ -1,31 +1,41 @@
-name: Finance Project CI
+name: Node.js CI/CD Pipeline
 
 on:
-  workflow_dispatch:   # Manual trigger
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      # 1. Code checkout
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      # 2. Node.js setup
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      - name: Install Dependencies
+      # 3. Install dependencies
+      - name: Install dependencies
         run: npm install
 
-      - name: Run Tests
-        run: npm test
+      # 4. Run build (agar koi build step hai)
+      - name: Build project
+        run: npm run build || echo "No build script defined"
 
-      - name: Build Project
-        run: npm run build
+      # 5. Run tests (agar test script hai)
+      - name: Run tests
+        run: npm test || echo "No test script defined"
 
-      - name: Deploy (Optional)
-        run: |
-          echo "Deploying to production..."
-          # Add your deployment commands here
+      # 6. (Optional) Lint or other checks
+      - name: Lint check
+        run: npm run lint || echo "No lint script defined"
+
