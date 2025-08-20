@@ -1,4 +1,4 @@
-name: Node.js CI Pipeline
+name: Finance Project 1 - Node.js CI
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout code
+      # 1. Checkout the repo
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -34,4 +34,4 @@ jobs:
       # 5. Optional: Run tests
       - name: Run tests
         run: npm test || echo "No test script defined"
-
+    
