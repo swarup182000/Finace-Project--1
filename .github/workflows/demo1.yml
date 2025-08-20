@@ -1,1 +1,11 @@
-name: client 
+name: Manual Hello World
+
+on:
+  workflow_dispatch:   # manual trigger
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Hello World
+        run: echo "Hello World!"
