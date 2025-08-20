@@ -13,25 +13,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout the repo
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      # 1. Checkout repo
+      - uses: actions/checkout@v3
 
       # 2. Setup Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      # 3. Install dependencies (package.json root me hai)
-      - name: Install dependencies
-        run: npm install
+      # 3. Install dependencies
+      - run: npm install
 
-      # 4. Optional: Build project
-      - name: Build project
-        run: npm run build || echo "No build script defined"
+      # 4. Optional: Build
+      - run: npm run build || echo "No build script defined"
 
-      # 5. Optional: Run tests
-      - name: Run tests
-        run: npm test || echo "No test script defined"
-    
+      # 5. Optional: Test
+      - run: npm test || echo "No test script defined"
+  
