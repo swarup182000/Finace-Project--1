@@ -1,0 +1,14 @@
+# FinanceMe Banking DevOps Project
+
+This project demonstrates a CI/CD pipeline using:
+- Jenkins for automation
+- Docker & DockerHub for containerization
+- Terraform for Infrastructure as Code on AWS
+- Ansible for configuration management
+- Prometheus & Grafana for monitoring
+
+## Workflow
+GitHub → Jenkins → Docker → AWS EC2 Deployment → Monitoring (Prometheus + Grafana)
+
+## Outcome
+Fully automated deployment pipeline with monitoring dashboard.
