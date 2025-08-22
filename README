@@ -24,5 +24,4 @@ GitHub → Jenkins → Build Docker → Push to DockerHub → Deploy on AWS via 
 ![Grafana Dashboard](docs/grafana.png)
 
 ## Outcome & Learning
-Built a full DevOps pipeline from code to cloud deployment and monitoring. I learned automation, containerization, and best practices in CI/CD.
-
+Built a full DevOps pipeline from code to cloud deployment and monitoring. I learned automation, containerization, and best practices in CI/CD.:
