@@ -1,14 +1,28 @@
 # FinanceMe Banking DevOps Project
 
-This project demonstrates a CI/CD pipeline using:
-- Jenkins for automation
-- Docker & DockerHub for containerization
-- Terraform for Infrastructure as Code on AWS
-- Ansible for configuration management
-- Prometheus & Grafana for monitoring
+An end-to-end DevOps pipeline demonstrating modern CI/CD and infrastructure automation.
+
+## Tools & Technologies Used
+- Docker & DockerHub
+- Jenkins (CI/CD)
+- Ansible (Configuration Automation)
+- AWS EC2 (Deployment)
+- Prometheus & Grafana (Monitoring)
 
 ## Workflow
-GitHub → Jenkins → Docker → AWS EC2 Deployment → Monitoring (Prometheus + Grafana)
+GitHub → Jenkins → Build Docker → Push to DockerHub → Deploy on AWS via Ansible → Monitor with Grafana
 
-## Outcome
-Fully automated deployment pipeline with monitoring dashboard.
+## How to Run
+1. Clone the repository.
+2. Build Docker image: `docker build -t financeme:latest .`
+3. Trigger Jenkins pipeline via `Jenkinsfile`.
+4. Provision infrastructure using Ansible and deploy.
+5. (Optional) View monitoring dashboard via Grafana.
+
+## Visuals
+![Jenkins Build](docs/jenkins.png)
+![Grafana Dashboard](docs/grafana.png)
+
+## Outcome & Learning
+Built a full DevOps pipeline from code to cloud deployment and monitoring. I learned automation, containerization, and best practices in CI/CD.
+
